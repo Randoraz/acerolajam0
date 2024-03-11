@@ -1,0 +1,41 @@
+[gd_scene load_steps=5 format=3 uid="uid://bc18umkt8m01x"]
+
+[ext_resource type="Script" path="res://scripts/TitleScreen.cs" id="1_2v1x8"]
+[ext_resource type="Texture2D" uid="uid://bp3uot01j2o1y" path="res://sprites/Background/TitleScreenBackground.png" id="2_8l4ls"]
+[ext_resource type="Theme" uid="uid://cr2lb7gt03py2" path="res://themes/DefaultTheme.tres" id="2_jqhvc"]
+[ext_resource type="Texture2D" uid="uid://c3na7elnsaems" path="res://sprites/Background/Logo.png" id="4_seiv0"]
+
+[node name="CanvasLayer" type="CanvasLayer"]
+scale = Vector2(2, 2)
+transform = Transform2D(2, 0, 0, 2, 0, 0)
+script = ExtResource("1_2v1x8")
+
+[node name="TitleScreen" type="TextureRect" parent="."]
+offset_right = 320.0
+offset_bottom = 180.0
+texture = ExtResource("2_8l4ls")
+
+[node name="Logo" type="TextureRect" parent="."]
+offset_right = 320.0
+offset_bottom = 180.0
+texture = ExtResource("4_seiv0")
+
+[node name="StartButton" type="Button" parent="."]
+offset_left = 128.0
+offset_top = 144.0
+offset_right = 192.0
+offset_bottom = 161.0
+theme = ExtResource("2_jqhvc")
+text = "Start"
+
+[node name="Label" type="Label" parent="."]
+offset_left = 108.0
+offset_top = 4.0
+offset_right = 320.0
+offset_bottom = 44.0
+scale = Vector2(0.5, 0.5)
+theme = ExtResource("2_jqhvc")
+theme_override_font_sizes/font_size = 32
+text = "Game by Randoraz"
+
+[connection signal="pressed" from="StartButton" to="." method="OnStartButtonPressed"]

@@ -1,0 +1,50 @@
+[gd_scene load_steps=9 format=3 uid="uid://csq0ilr6atv5j"]
+
+[ext_resource type="Texture2D" uid="uid://chcdbl8tj2n0t" path="res://sprites/Person1/person1_1.png" id="1_0ookx"]
+[ext_resource type="Script" path="res://scripts/Suspect.cs" id="1_q7wss"]
+[ext_resource type="Texture2D" uid="uid://8rvhsr4or4e4" path="res://sprites/Person1/person1_2.png" id="2_yyftw"]
+[ext_resource type="Texture2D" uid="uid://di3shf68b0wta" path="res://sprites/Person1/person1_3.png" id="3_lvcch"]
+[ext_resource type="Texture2D" uid="uid://cb0q75ai3ro5l" path="res://sprites/Person1/person1_4.png" id="4_ct0ww"]
+[ext_resource type="Texture2D" uid="uid://dqok8l4x2rhhv" path="res://sprites/Person1/person1_5.png" id="6_yfgby"]
+[ext_resource type="Texture2D" uid="uid://dv62f30nll1y3" path="res://sprites/Person1/person1_6.png" id="7_8lqy5"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_h5qj8"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_0ookx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_yyftw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_lvcch")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_ct0ww")
+}],
+"loop": true,
+"name": &"suspect1",
+"speed": 3.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_yfgby")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_8lqy5")
+}],
+"loop": true,
+"name": &"suspectDPG",
+"speed": 3.0
+}]
+
+[node name="Suspect" type="Node2D"]
+script = ExtResource("1_q7wss")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_h5qj8")
+animation = &"suspectDPG"
+frame = 1
+frame_progress = 0.875218

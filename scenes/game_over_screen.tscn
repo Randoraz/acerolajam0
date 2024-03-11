@@ -1,0 +1,98 @@
+[gd_scene load_steps=13 format=3 uid="uid://cs6w4u06ewwxg"]
+
+[ext_resource type="Texture2D" uid="uid://cf68uilf2xbsj" path="res://sprites/Background/GameOverScreen1.png" id="1_5qdnq"]
+[ext_resource type="Script" path="res://scripts/GameOverScreen.cs" id="1_yltrq"]
+[ext_resource type="FontFile" uid="uid://bbr7fyrc5d3je" path="res://fonts/m5x7.ttf" id="2_h0oif"]
+[ext_resource type="Theme" uid="uid://cr2lb7gt03py2" path="res://themes/DefaultTheme.tres" id="4_5npnm"]
+[ext_resource type="Texture2D" uid="uid://dcl5i6vxfv7ne" path="res://sprites/SlashScreen/SlashScreen0.png" id="5_e5ow5"]
+[ext_resource type="Texture2D" uid="uid://cqik6td7au0o3" path="res://sprites/SlashScreen/SlashScreen1.png" id="6_a8ib8"]
+[ext_resource type="Texture2D" uid="uid://s1hetsm1al4l" path="res://sprites/SlashScreen/SlashScreen2.png" id="7_n8ayo"]
+[ext_resource type="Texture2D" uid="uid://bsq7aokbk6csl" path="res://sprites/SlashScreen/SlashScreen3.png" id="8_7bf3b"]
+[ext_resource type="Texture2D" uid="uid://bon85fpxtj1c" path="res://sprites/SlashScreen/SlashScreen4.png" id="9_k68h2"]
+[ext_resource type="Texture2D" uid="uid://tje6kbeis5lt" path="res://sprites/SlashScreen/SlashScreen5.png" id="10_0svi6"]
+[ext_resource type="Texture2D" uid="uid://cryrmd6yo17gj" path="res://sprites/SlashScreen/SlashScreen6.png" id="11_m50bf"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_5ylbw"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_e5ow5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_a8ib8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_n8ayo")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_7bf3b")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_k68h2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_0svi6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_m50bf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_e5ow5")
+}],
+"loop": false,
+"name": &"slash",
+"speed": 8.0
+}]
+
+[node name="GameOverScreen" type="CanvasLayer"]
+layer = 2
+scale = Vector2(2, 2)
+transform = Transform2D(2, 0, 0, 2, 0, 0)
+script = ExtResource("1_yltrq")
+
+[node name="Background" type="TextureRect" parent="."]
+offset_right = 320.0
+offset_bottom = 180.0
+texture = ExtResource("1_5qdnq")
+
+[node name="Label" type="Label" parent="."]
+offset_left = 44.0
+offset_top = 60.0
+offset_right = 276.0
+offset_bottom = 115.0
+theme_override_colors/font_color = Color(0.564706, 0.290196, 0.25098, 1)
+theme_override_colors/font_shadow_color = Color(0.482353, 0.219608, 0.227451, 1)
+theme_override_colors/font_outline_color = Color(0.482353, 0.219608, 0.227451, 1)
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = ExtResource("2_h0oif")
+theme_override_font_sizes/font_size = 32
+text = "You were knocked out!
+Try again!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Button" type="Button" parent="."]
+offset_left = 128.0
+offset_top = 144.0
+offset_right = 192.0
+offset_bottom = 161.0
+theme = ExtResource("4_5npnm")
+theme_override_fonts/font = ExtResource("2_h0oif")
+theme_override_font_sizes/font_size = 16
+text = "Restart"
+
+[node name="SlashScreen" type="AnimatedSprite2D" parent="."]
+visible = false
+position = Vector2(160, 90)
+sprite_frames = SubResource("SpriteFrames_5ylbw")
+animation = &"slash"
+frame = 7
+frame_progress = 1.0
+
+[node name="GameOverTimer" type="Timer" parent="."]
+wait_time = 1.5
+one_shot = true
+
+[connection signal="pressed" from="Button" to="." method="OnRestartButtonPressed"]
+[connection signal="animation_finished" from="SlashScreen" to="." method="OnAnimationFinished"]
+[connection signal="timeout" from="GameOverTimer" to="." method="OnGameOverTimeOut"]

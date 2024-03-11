@@ -1,0 +1,640 @@
+[gd_scene load_steps=27 format=3 uid="uid://bqnq5x0q6rsey"]
+
+[ext_resource type="Script" path="res://scripts/HUD.cs" id="1_fpa18"]
+[ext_resource type="Theme" uid="uid://cr2lb7gt03py2" path="res://themes/DefaultTheme.tres" id="1_vlwc8"]
+[ext_resource type="Texture2D" uid="uid://bivv40ywfd5ax" path="res://sprites/UI/dialogBox3.png" id="3_kc5hl"]
+[ext_resource type="FontFile" uid="uid://bbr7fyrc5d3je" path="res://fonts/m5x7.ttf" id="3_tn0if"]
+[ext_resource type="Texture2D" uid="uid://cdslsi5qyv12c" path="res://sprites/UI/Bar1.png" id="4_ravi6"]
+[ext_resource type="Texture2D" uid="uid://6cei56ixr1qm" path="res://sprites/UI/Bar.png" id="5_0x87y"]
+[ext_resource type="Texture2D" uid="uid://wo6iwb2bjaa7" path="res://sprites/UI/evidence1.png" id="6_wy03b"]
+[ext_resource type="Texture2D" uid="uid://dwlay08x6hl8u" path="res://sprites/UI/evidence2.png" id="7_yy88u"]
+[ext_resource type="Texture2D" uid="uid://cl1jncbw7bpe" path="res://sprites/UI/arrow.png" id="8_7csgr"]
+[ext_resource type="Texture2D" uid="uid://gkfmmcjlp7ac" path="res://sprites/UI/evidence3.png" id="8_guj4p"]
+[ext_resource type="FontFile" path="res://fonts/DePixel/DePixelKlein.ttf" id="9_7grmp"]
+[ext_resource type="Texture2D" uid="uid://bq5o6ampqcs84" path="res://sprites/UI/arrowHover.png" id="9_nqqui"]
+[ext_resource type="Texture2D" uid="uid://v3u6tfs26jqe" path="res://sprites/UI/arrowPressed.png" id="10_fnnd1"]
+[ext_resource type="ButtonGroup" uid="uid://coa6upwrdxk31" path="res://themes/reportGroup.tres" id="10_ryfpf"]
+[ext_resource type="Texture2D" uid="uid://cekdup7ndmgj3" path="res://sprites/UI/arrowA.png" id="12_tks6n"]
+[ext_resource type="Texture2D" uid="uid://c6c1nnfi3jhvt" path="res://sprites/UI/arrowHoverA.png" id="13_7sktp"]
+[ext_resource type="Texture2D" uid="uid://b56xcr3g10pdp" path="res://sprites/UI/arrowPressedA.png" id="14_rvfgy"]
+[ext_resource type="Texture2D" uid="uid://bgsdgwu8otjxe" path="res://sprites/UI/evidenceIcon.png" id="18_hncjo"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_g35en"]
+texture = ExtResource("3_kc5hl")
+texture_margin_left = 12.0
+texture_margin_top = 12.0
+texture_margin_right = 12.0
+texture_margin_bottom = 12.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_23ikl"]
+texture = ExtResource("8_7csgr")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_kur85"]
+texture = ExtResource("9_nqqui")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_pmv0h"]
+texture = ExtResource("10_fnnd1")
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_y30uk"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_xbgjk"]
+texture = ExtResource("12_tks6n")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_8josp"]
+texture = ExtResource("13_7sktp")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_lbw35"]
+texture = ExtResource("14_rvfgy")
+
+[node name="HUD" type="CanvasLayer"]
+script = ExtResource("1_fpa18")
+
+[node name="SuspectDialog" type="Label" parent="."]
+texture_filter = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 48.0
+offset_top = 96.0
+offset_right = 312.0
+offset_bottom = 128.0
+grow_horizontal = 2
+theme = ExtResource("1_vlwc8")
+text = "Here goes the dialog"
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="PoliceDialog" type="Label" parent="."]
+texture_filter = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -64.0
+offset_top = 96.0
+offset_right = 200.0
+offset_bottom = 128.0
+grow_horizontal = 2
+theme = ExtResource("1_vlwc8")
+theme_override_colors/font_color = Color(0.564706, 0.290196, 0.25098, 1)
+theme_override_styles/normal = SubResource("StyleBoxTexture_g35en")
+text = "Here goes the dialog"
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="DialogOptions" type="ItemList" parent="."]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -312.0
+offset_top = -88.0
+offset_right = 312.0
+offset_bottom = -8.0
+grow_horizontal = 2
+grow_vertical = 0
+theme = ExtResource("1_vlwc8")
+theme_override_fonts/font = ExtResource("3_tn0if")
+theme_override_font_sizes/font_size = 16
+item_count = 3
+item_0/text = "Testing"
+item_1/text = "Another one"
+item_2/text = "One more"
+
+[node name="SuspicionBar" type="TextureProgressBar" parent="."]
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 78.0
+offset_bottom = 18.0
+scale = Vector2(2, 2)
+texture_under = ExtResource("4_ravi6")
+texture_progress = ExtResource("5_0x87y")
+
+[node name="EvidencePage" type="Node" parent="."]
+
+[node name="Page1" type="TextureRect" parent="EvidencePage"]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -121.0
+offset_top = -152.0
+offset_right = 1.0
+offset_bottom = -2.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(2, 2)
+texture = ExtResource("6_wy03b")
+
+[node name="Label" type="Label" parent="EvidencePage/Page1"]
+layout_mode = 0
+offset_left = 13.5
+offset_top = 6.0
+offset_right = 227.5
+offset_bottom = 32.0
+scale = Vector2(0.5, 0.5)
+theme_override_colors/font_color = Color(0.14902, 0.176471, 0.184314, 1)
+theme_override_fonts/font = ExtResource("3_tn0if")
+theme_override_font_sizes/font_size = 24
+text = "Suspect Information"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label2" type="Label" parent="EvidencePage/Page1"]
+layout_mode = 0
+offset_left = 14.0
+offset_top = 22.0
+offset_right = 118.0
+offset_bottom = 254.0
+scale = Vector2(0.5, 0.5)
+theme_override_colors/font_color = Color(0.14902, 0.176471, 0.184314, 1)
+theme_override_fonts/font = ExtResource("3_tn0if")
+theme_override_font_sizes/font_size = 16
+text = "Name:
+
+Date of birth:
+
+Reason for arrest:
+
+
+Family situation:
+
+
+
+Personal details:"
+
+[node name="Label3" type="Label" parent="EvidencePage/Page1"]
+layout_mode = 0
+offset_left = 66.0
+offset_top = 22.0
+offset_right = 170.0
+offset_bottom = 254.0
+scale = Vector2(0.5, 0.5)
+theme_override_colors/font_color = Color(0.14902, 0.176471, 0.184314, 1)
+theme_override_fonts/font = ExtResource("3_tn0if")
+theme_override_font_sizes/font_size = 16
+text = "Gregor Octavius
+
+03/03/2032
+
+Arson. Burned down his house.
+
+Mother, father and sister are unreachable.
+
+Practices swimming
+Loves cooking"
+horizontal_alignment = 2
+autowrap_mode = 2
+
+[node name="NextButton" type="Button" parent="EvidencePage/Page1"]
+layout_mode = 0
+offset_left = 134.0
+offset_top = 98.0
+offset_right = 174.0
+offset_bottom = 120.0
+theme_override_colors/font_color = Color(0.14902, 0.176471, 0.184314, 1)
+theme_override_colors/font_pressed_color = Color(0.494118, 0.552941, 0.529412, 1)
+theme_override_colors/font_hover_color = Color(0.14902, 0.176471, 0.184314, 1)
+theme_override_colors/font_focus_color = Color(0.14902, 0.176471, 0.184314, 1)
+theme_override_fonts/font = ExtResource("3_tn0if")
+theme_override_font_sizes/font_size = 16
+theme_override_styles/normal = SubResource("StyleBoxTexture_23ikl")
+theme_override_styles/hover = SubResource("StyleBoxTexture_kur85")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_pmv0h")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_y30uk")
+
+[node name="Page2" type="TextureRect" parent="EvidencePage"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -121.0
+offset_top = -152.0
+offset_right = 1.0
+offset_bottom = -2.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(2, 2)
+texture = ExtResource("7_yy88u")
+
+[node name="Label" type="Label" parent="EvidencePage/Page2"]
+layout_mode = 0
+offset_left = 13.5
+offset_top = 6.0
+offset_right = 227.5
+offset_bottom = 32.0
+scale = Vector2(0.5, 0.5)
+theme_override_colors/font_color = Color(0.14902, 0.176471, 0.184314, 1)
+theme_override_fonts/font = ExtResource("3_tn0if")
+theme_override_font_sizes/font_size = 24
+text = "Investigation"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label2" type="Label" parent="EvidencePage/Page2"]
+layout_mode = 0
+offset_left = 14.0
+offset_top = 22.0
+offset_right = 221.0
+offset_bottom = 254.0
+scale = Vector2(0.5, 0.5)
+theme_override_colors/font_color = Color(0.14902, 0.176471, 0.184314, 1)
+theme_override_fonts/font = ExtResource("3_tn0if")
+theme_override_font_sizes/font_size = 16
+text = "Scientists confirmed doppelgangers live between us.
+They may commit crimes while pretending to be a person.
+
+Your job is to figure out if the suspect is a person or doppelganger.
+
+Try to get as much evidence before they become suspicious.
+If suspicion bar gets completely full, a doppelganger will attack.
+
+Survive and submit a report."
+autowrap_mode = 2
+
+[node name="NextButton" type="Button" parent="EvidencePage/Page2"]
+offset_left = 134.0
+offset_top = 98.0
+offset_right = 174.0
+offset_bottom = 120.0
+theme_override_colors/font_color = Color(0.14902, 0.176471, 0.184314, 1)
+theme_override_colors/font_pressed_color = Color(0.494118, 0.552941, 0.529412, 1)
+theme_override_colors/font_hover_color = Color(0.14902, 0.176471, 0.184314, 1)
+theme_override_colors/font_focus_color = Color(0.14902, 0.176471, 0.184314, 1)
+theme_override_fonts/font = ExtResource("3_tn0if")
+theme_override_font_sizes/font_size = 16
+theme_override_styles/normal = SubResource("StyleBoxTexture_23ikl")
+theme_override_styles/hover = SubResource("StyleBoxTexture_kur85")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_pmv0h")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_y30uk")
+
+[node name="PreviousButton" type="Button" parent="EvidencePage/Page2"]
+offset_left = -42.5
+offset_top = 98.0
+offset_right = -2.5
+offset_bottom = 120.0
+theme_override_colors/font_color = Color(0.14902, 0.176471, 0.184314, 1)
+theme_override_colors/font_pressed_color = Color(0.494118, 0.552941, 0.529412, 1)
+theme_override_colors/font_hover_color = Color(0.14902, 0.176471, 0.184314, 1)
+theme_override_colors/font_focus_color = Color(0.14902, 0.176471, 0.184314, 1)
+theme_override_fonts/font = ExtResource("3_tn0if")
+theme_override_font_sizes/font_size = 16
+theme_override_styles/normal = SubResource("StyleBoxTexture_xbgjk")
+theme_override_styles/hover = SubResource("StyleBoxTexture_8josp")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_lbw35")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_y30uk")
+
+[node name="Page3" type="TextureRect" parent="EvidencePage"]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -121.0
+offset_top = -152.0
+offset_right = 1.0
+offset_bottom = -2.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(2, 2)
+texture = ExtResource("8_guj4p")
+
+[node name="Label" type="Label" parent="EvidencePage/Page3"]
+layout_mode = 0
+offset_left = 13.5
+offset_top = 6.0
+offset_right = 227.5
+offset_bottom = 32.0
+scale = Vector2(0.5, 0.5)
+theme_override_colors/font_color = Color(0.14902, 0.176471, 0.184314, 1)
+theme_override_fonts/font = ExtResource("3_tn0if")
+theme_override_font_sizes/font_size = 24
+text = "Helpful tips"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label2" type="Label" parent="EvidencePage/Page3"]
+layout_mode = 0
+offset_left = 14.0
+offset_top = 22.0
+offset_right = 221.0
+offset_bottom = 254.0
+scale = Vector2(0.5, 0.5)
+theme_override_colors/font_color = Color(0.14902, 0.176471, 0.184314, 1)
+theme_override_fonts/font = ExtResource("3_tn0if")
+theme_override_font_sizes/font_size = 16
+text = "Doppelgangers never bother pretending to be innocent.
+
+They might give wrong information about the person they pretend to be. They mix up the person's story with their own, so conflicting information is a clear sign you are talking to a doppelganger.
+
+Showing sympathy will restore confidence.
+
+Never confront them about their identity directly."
+autowrap_mode = 2
+
+[node name="PreviousButton" type="Button" parent="EvidencePage/Page3"]
+offset_left = -42.5
+offset_top = 98.0
+offset_right = -2.5
+offset_bottom = 120.0
+theme_override_colors/font_color = Color(0.14902, 0.176471, 0.184314, 1)
+theme_override_colors/font_pressed_color = Color(0.494118, 0.552941, 0.529412, 1)
+theme_override_colors/font_hover_color = Color(0.14902, 0.176471, 0.184314, 1)
+theme_override_colors/font_focus_color = Color(0.14902, 0.176471, 0.184314, 1)
+theme_override_fonts/font = ExtResource("3_tn0if")
+theme_override_font_sizes/font_size = 16
+theme_override_styles/normal = SubResource("StyleBoxTexture_xbgjk")
+theme_override_styles/hover = SubResource("StyleBoxTexture_8josp")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_lbw35")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_y30uk")
+
+[node name="Report" type="Node" parent="."]
+
+[node name="Page1" type="TextureRect" parent="Report"]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -121.0
+offset_top = -152.0
+offset_right = 1.0
+offset_bottom = -2.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(2, 2)
+texture = ExtResource("6_wy03b")
+
+[node name="Label" type="Label" parent="Report/Page1"]
+layout_mode = 0
+offset_left = 13.5
+offset_top = 6.0
+offset_right = 227.5
+offset_bottom = 32.0
+scale = Vector2(0.5, 0.5)
+theme_override_colors/font_color = Color(0.14902, 0.176471, 0.184314, 1)
+theme_override_fonts/font = ExtResource("3_tn0if")
+theme_override_font_sizes/font_size = 24
+text = "Report"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label2" type="Label" parent="Report/Page1"]
+layout_mode = 0
+offset_left = 14.0
+offset_top = 50.0
+offset_right = 118.0
+offset_bottom = 226.0
+scale = Vector2(0.5, 0.5)
+theme_override_colors/font_color = Color(0.14902, 0.176471, 0.184314, 1)
+theme_override_fonts/font = ExtResource("3_tn0if")
+theme_override_font_sizes/font_size = 16
+text = "Name:
+
+Age:
+
+Reason for arrest:
+
+Family situation:
+
+Personal details:"
+horizontal_alignment = 2
+
+[node name="Label3" type="Label" parent="Report/Page1"]
+layout_mode = 0
+offset_left = 14.0
+offset_top = 22.0
+offset_right = 222.0
+offset_bottom = 70.0
+scale = Vector2(0.5, 0.5)
+theme_override_colors/font_color = Color(0.14902, 0.176471, 0.184314, 1)
+theme_override_fonts/font = ExtResource("3_tn0if")
+theme_override_font_sizes/font_size = 16
+text = "Hereby, I attest the suspect's story matched the following information:"
+autowrap_mode = 2
+
+[node name="NameCheckBox" type="CheckBox" parent="Report/Page1"]
+layout_mode = 0
+offset_left = 74.0
+offset_top = 50.0
+offset_right = 90.0
+offset_bottom = 66.0
+theme = ExtResource("1_vlwc8")
+
+[node name="DOBCheckBox" type="CheckBox" parent="Report/Page1"]
+layout_mode = 0
+offset_left = 74.0
+offset_top = 66.0
+offset_right = 90.0
+offset_bottom = 82.0
+theme = ExtResource("1_vlwc8")
+
+[node name="RFACheckBox" type="CheckBox" parent="Report/Page1"]
+layout_mode = 0
+offset_left = 73.5
+offset_top = 82.0
+offset_right = 89.5
+offset_bottom = 98.0
+theme = ExtResource("1_vlwc8")
+
+[node name="FamilyCheckBox" type="CheckBox" parent="Report/Page1"]
+layout_mode = 0
+offset_left = 74.0
+offset_top = 98.0
+offset_right = 90.0
+offset_bottom = 114.0
+theme = ExtResource("1_vlwc8")
+
+[node name="PDCheckBox" type="CheckBox" parent="Report/Page1"]
+layout_mode = 0
+offset_left = 73.5
+offset_top = 114.0
+offset_right = 89.5
+offset_bottom = 130.0
+theme = ExtResource("1_vlwc8")
+
+[node name="NextButton" type="Button" parent="Report/Page1"]
+offset_left = 134.0
+offset_top = 98.0
+offset_right = 174.0
+offset_bottom = 120.0
+theme_override_colors/font_color = Color(0.14902, 0.176471, 0.184314, 1)
+theme_override_colors/font_pressed_color = Color(0.494118, 0.552941, 0.529412, 1)
+theme_override_colors/font_hover_color = Color(0.14902, 0.176471, 0.184314, 1)
+theme_override_colors/font_focus_color = Color(0.14902, 0.176471, 0.184314, 1)
+theme_override_fonts/font = ExtResource("3_tn0if")
+theme_override_font_sizes/font_size = 16
+theme_override_styles/normal = SubResource("StyleBoxTexture_23ikl")
+theme_override_styles/hover = SubResource("StyleBoxTexture_kur85")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_pmv0h")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_y30uk")
+
+[node name="Page2" type="TextureRect" parent="Report"]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -121.0
+offset_top = -152.0
+offset_right = 1.0
+offset_bottom = -2.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(2, 2)
+texture = ExtResource("8_guj4p")
+
+[node name="Label" type="Label" parent="Report/Page2"]
+layout_mode = 0
+offset_left = 13.5
+offset_top = 6.0
+offset_right = 227.5
+offset_bottom = 32.0
+scale = Vector2(0.5, 0.5)
+theme_override_colors/font_color = Color(0.14902, 0.176471, 0.184314, 1)
+theme_override_fonts/font = ExtResource("3_tn0if")
+theme_override_font_sizes/font_size = 24
+text = "Report"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label2" type="Label" parent="Report/Page2"]
+layout_mode = 0
+offset_left = 14.0
+offset_top = 22.0
+offset_right = 221.0
+offset_bottom = 150.0
+scale = Vector2(0.5, 0.5)
+theme_override_colors/font_color = Color(0.14902, 0.176471, 0.184314, 1)
+theme_override_fonts/font = ExtResource("3_tn0if")
+theme_override_font_sizes/font_size = 16
+text = "After interrogation and investigation, I hereby declare that the testimony given by the suspect
+
+Gregor Octavius
+
+corroborates to my conclusion that the suspect is a:"
+autowrap_mode = 2
+
+[node name="Label3" type="Label" parent="Report/Page2"]
+layout_mode = 0
+offset_left = 14.0
+offset_top = 94.0
+offset_right = 101.0
+offset_bottom = 150.0
+scale = Vector2(0.5, 0.5)
+theme_override_colors/font_color = Color(0.14902, 0.176471, 0.184314, 1)
+theme_override_fonts/font = ExtResource("3_tn0if")
+theme_override_font_sizes/font_size = 16
+text = "Human
+
+Doppelganger"
+horizontal_alignment = 2
+autowrap_mode = 2
+
+[node name="Label4" type="Label" parent="Report/Page2"]
+layout_mode = 0
+offset_left = 6.0
+offset_top = 134.0
+offset_right = 230.0
+offset_bottom = 147.0
+scale = Vector2(0.5, 0.5)
+theme_override_colors/font_color = Color(0.14902, 0.176471, 0.184314, 1)
+theme_override_fonts/font = ExtResource("9_7grmp")
+theme_override_font_sizes/font_size = 9
+text = "07/03/2050                                  Alice Oliver"
+horizontal_alignment = 2
+autowrap_mode = 2
+
+[node name="HumanCheckBox" type="CheckBox" parent="Report/Page2"]
+layout_mode = 0
+offset_left = 61.5
+offset_top = 94.0
+offset_right = 77.5
+offset_bottom = 110.0
+theme = ExtResource("1_vlwc8")
+button_group = ExtResource("10_ryfpf")
+
+[node name="DPGCheckBox" type="CheckBox" parent="Report/Page2"]
+layout_mode = 0
+offset_left = 61.5
+offset_top = 110.0
+offset_right = 77.5
+offset_bottom = 126.0
+theme = ExtResource("1_vlwc8")
+button_group = ExtResource("10_ryfpf")
+
+[node name="SubmitReportButton" type="Button" parent="Report/Page2"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -21.0
+offset_top = -25.0
+offset_right = 23.0
+offset_bottom = -8.0
+grow_horizontal = 2
+grow_vertical = 0
+theme = ExtResource("1_vlwc8")
+theme_override_fonts/font = ExtResource("3_tn0if")
+theme_override_font_sizes/font_size = 16
+text = "Submit"
+
+[node name="PreviousButton" type="Button" parent="Report/Page2"]
+offset_left = -42.5
+offset_top = 98.0
+offset_right = -2.5
+offset_bottom = 120.0
+theme_override_colors/font_color = Color(0.14902, 0.176471, 0.184314, 1)
+theme_override_colors/font_pressed_color = Color(0.494118, 0.552941, 0.529412, 1)
+theme_override_colors/font_hover_color = Color(0.14902, 0.176471, 0.184314, 1)
+theme_override_colors/font_focus_color = Color(0.14902, 0.176471, 0.184314, 1)
+theme_override_fonts/font = ExtResource("3_tn0if")
+theme_override_font_sizes/font_size = 16
+theme_override_styles/normal = SubResource("StyleBoxTexture_xbgjk")
+theme_override_styles/hover = SubResource("StyleBoxTexture_8josp")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_lbw35")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_y30uk")
+
+[node name="LabelTimer" type="Timer" parent="."]
+wait_time = 0.05
+
+[node name="PoliceLabelTimer" type="Timer" parent="."]
+wait_time = 0.05
+
+[node name="PolicePauseTimer" type="Timer" parent="."]
+wait_time = 1.5
+one_shot = true
+
+[node name="EvidenceButton" type="Button" parent="."]
+offset_left = 8.0
+offset_top = 40.0
+offset_right = 78.0
+offset_bottom = 68.0
+scale = Vector2(2, 2)
+theme = ExtResource("1_vlwc8")
+theme_override_fonts/font = ExtResource("3_tn0if")
+theme_override_font_sizes/font_size = 16
+text = "Toggle"
+icon = ExtResource("18_hncjo")
+
+[connection signal="DialogOptionClicked" from="." to="." method="DialogOptionClicked"]
+[connection signal="item_clicked" from="DialogOptions" to="." method="OnDialogOptionClicked"]
+[connection signal="pressed" from="EvidencePage/Page1/NextButton" to="." method="NextPage"]
+[connection signal="pressed" from="EvidencePage/Page2/NextButton" to="." method="NextPage"]
+[connection signal="pressed" from="EvidencePage/Page2/PreviousButton" to="." method="PreviousPage"]
+[connection signal="pressed" from="EvidencePage/Page3/PreviousButton" to="." method="PreviousPage"]
+[connection signal="pressed" from="Report/Page1/NextButton" to="." method="NextPage"]
+[connection signal="pressed" from="Report/Page2/SubmitReportButton" to="." method="OnSubmitReportPressed"]
+[connection signal="pressed" from="Report/Page2/PreviousButton" to="." method="PreviousPage"]
+[connection signal="timeout" from="LabelTimer" to="." method="OnLabelTimeout"]
+[connection signal="timeout" from="PoliceLabelTimer" to="." method="OnPoliceLabelTimeout"]
+[connection signal="timeout" from="PolicePauseTimer" to="." method="OnPolicePauseTimeout"]
+[connection signal="pressed" from="EvidenceButton" to="." method="OnEvidenceButtonPressed"]

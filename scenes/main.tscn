@@ -1,0 +1,47 @@
+[gd_scene load_steps=8 format=3 uid="uid://laehmctkoajf"]
+
+[ext_resource type="Script" path="res://scripts/Main.cs" id="1_ojwpf"]
+[ext_resource type="PackedScene" uid="uid://bqnq5x0q6rsey" path="res://scenes/HUD.tscn" id="2_8u0de"]
+[ext_resource type="PackedScene" uid="uid://csq0ilr6atv5j" path="res://scenes/Suspect.tscn" id="3_vpapv"]
+[ext_resource type="PackedScene" uid="uid://btona2mvlxs3x" path="res://scenes/police.tscn" id="4_8ub6r"]
+[ext_resource type="Texture2D" uid="uid://dfdnmcran77rb" path="res://sprites/Background/Background1.png" id="4_wmiui"]
+[ext_resource type="PackedScene" uid="uid://cs6w4u06ewwxg" path="res://scenes/game_over_screen.tscn" id="6_ccqcv"]
+[ext_resource type="AudioStream" uid="uid://drpeoy4s2wihq" path="res://music/Suspect.wav" id="7_4bup3"]
+
+[node name="Main" type="Node2D"]
+script = ExtResource("1_ojwpf")
+SuspectScene = ExtResource("3_vpapv")
+PoliceScene = ExtResource("4_8ub6r")
+
+[node name="HUD" parent="." instance=ExtResource("2_8u0de")]
+
+[node name="Background" type="TextureRect" parent="."]
+offset_right = 640.0
+offset_bottom = 360.0
+texture = ExtResource("4_wmiui")
+
+[node name="SuspectPos" type="Marker2D" parent="."]
+position = Vector2(320, 162)
+
+[node name="PolicePos" type="Marker2D" parent="."]
+position = Vector2(220, 156)
+
+[node name="GameOverScreen" parent="." instance=ExtResource("6_ccqcv")]
+visible = false
+
+[node name="ReportTimer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
+[node name="SuspectAudio" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_4bup3")
+
+[connection signal="DialogOptionClicked" from="HUD" to="." method="DialogOptionClicked"]
+[connection signal="FinalDialogDone" from="HUD" to="." method="OnFinalDialogDone"]
+[connection signal="PoliceDialogFinished" from="HUD" to="." method="OnPoliceDialogFinished"]
+[connection signal="ReportSubmitted" from="HUD" to="." method="OnReportSubmitted"]
+[connection signal="SuspectStoppedTalking" from="HUD" to="." method="OnSuspectStoppedTalking"]
+[connection signal="ToggleEvidence" from="HUD" to="." method="OnEvidenceTogglePressed"]
+[connection signal="GameOverTimeOut" from="GameOverScreen" to="." method="OnGameOverTimeOut"]
+[connection signal="RestartButtonPressed" from="GameOverScreen" to="." method="OnRestartButtonPressed"]
+[connection signal="timeout" from="ReportTimer" to="." method="OnReportTimeOut"]
